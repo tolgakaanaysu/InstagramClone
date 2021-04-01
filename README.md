@@ -1,1 +1,1 @@
-Kodlar "InstagramCloneFirebase" klasörünün içindedir
+Kodlar "InstaCloneFirebase" klasörünün içindedir
