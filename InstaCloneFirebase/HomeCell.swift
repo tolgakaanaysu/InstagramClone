@@ -1,4 +1,3 @@
-
 import UIKit
 import Firebase
 class HomeCell: UITableViewCell {
@@ -12,7 +11,6 @@ class HomeCell: UITableViewCell {
 
     var likedByArray = [String]()
     var likeID = UUID()
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,9 +31,9 @@ class HomeCell: UITableViewCell {
         
         firestoreDatabase.collection("Posts").addSnapshotListener { (snapshot, error) in
             if error != nil {
-                print("*********** Error ********")
+             
                 print(error!.localizedDescription)
-                print("*********** Error ********")
+             
             }
             else {
                 if snapshot?.isEmpty != true {
@@ -65,8 +63,7 @@ class HomeCell: UITableViewCell {
                 likedByArray.append(auth!.email!)
                 let setData = ["likedBy" : likedByArray]
                 firestoreDatabase.collection("Posts").document(self.IDLabel.text!).setData(setData, merge: true)
-                print("buraya giriş yaptın 1")
-                
+               
                 return
                 
             }
@@ -78,7 +75,7 @@ class HomeCell: UITableViewCell {
         
         
         if let likeCount = Int(UserLikeLabel.text!) {
-            print("buraya giriş yaptın 2")
+          
             let likeStore = ["like": likeCount + 1 ] as [String : Any]
             
             firestoreDatabase.collection("Posts").document(self.IDLabel.text!).setData(likeStore, merge: true)
