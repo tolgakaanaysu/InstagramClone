@@ -1,9 +1,3 @@
-//
-//  SceneDelegate.swift
-//  InstaCloneFirebase
-//
-//  Created by Tolga Kağan Aysu on 20.03.2021.
-//
 
 import UIKit
 import Firebase

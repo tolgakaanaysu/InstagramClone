@@ -1,4 +1,3 @@
-
 import UIKit
 import Firebase
 class ProfileVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
