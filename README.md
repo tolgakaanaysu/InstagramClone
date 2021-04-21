@@ -1,1 +1,1 @@
-Kodlar "InstaCloneFirebase" klasörünün içindedir
+Firebase teknolojisini kullanarak basic instagram uygulaması yapmayı hedefledim
