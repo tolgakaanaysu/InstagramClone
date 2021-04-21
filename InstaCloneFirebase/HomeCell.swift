@@ -24,7 +24,7 @@ class HomeCell: UITableViewCell {
     }
     @IBAction func likeButtonClicked(_ sender: Any) {
        
-        UserLikeButton.isEnabled = false
+       
      
         let auth = Auth.auth().currentUser
         let firestoreDatabase = Firestore.firestore()
@@ -42,13 +42,13 @@ class HomeCell: UITableViewCell {
                         if let likedBy = document.get("likedBy") as? [String] {
                             self.likedByArray.append(contentsOf: likedBy)
                             
-                            print("get data başarılı")
+                           
                         }
                     }
                     
                 }
                 else {
-                    print("buraya giriş yaptın else 1")
+                    
 
                 }
                 

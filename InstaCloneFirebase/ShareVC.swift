@@ -4,21 +4,16 @@ class ShareVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
 
     @IBOutlet weak var shareButtonClicked: UIButton!
     @IBOutlet weak var imageView: UIImageView!
-   
-    @IBOutlet weak var commentText: UITextField!
-    
+   @IBOutlet weak var commentText: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         shareButtonClicked.isEnabled = false
         
-        
-        
         let gestureRecognize = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(gestureRecognize)
-
-        
+     
     }
     
     @IBAction func cameraButtonClicked(_ sender: Any) {
@@ -42,15 +37,6 @@ class ShareVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         view.endEditing(true)
     }
    
-    func makeAlert(alertTitle: String, alertMessage: String ){
-        
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertController.Style.alert)
-        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(okButton)
-        self.present(alert, animated: true, completion: nil)
-        
-    }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imageView.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
@@ -83,9 +69,7 @@ class ShareVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                         
                             let imageUrl = url?.absoluteString
                            
-                            
                             //DATABASE
-                            
                             let fireStoreDatabase = Firestore.firestore()
                             var fireStoreReferance : DocumentReference?
                             
@@ -115,6 +99,15 @@ class ShareVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         }
     }
     
+    func makeAlert(alertTitle: String, alertMessage: String ){
+        
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle:
+                                        UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
    
     
   
