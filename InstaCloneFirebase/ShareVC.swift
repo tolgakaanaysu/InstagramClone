@@ -53,7 +53,7 @@ class ShareVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         
         let mediaFolder = storageReferance.child("media")
         
-        if let data = imageView.image?.jpegData(compressionQuality: 0.5){
+        if let data = imageView.image?.jpegData(compressionQuality: 0.01){
             
             let imageID = UUID().uuidString
             let imageReferance = mediaFolder.child("\(imageID).jpg")

@@ -10,7 +10,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var likeArray = [Int]()
     var urlArray = [String]()
     var documentIDArray = [String]()
-    var likeID = String()
+    var likedByArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.UserEmailLabel.text = emailArray[indexPath.row]
         cell.UserLikeLabel.text = String(likeArray[indexPath.row])
         cell.UserImageView.sd_setImage(with: URL(string: self.urlArray[indexPath.row]))
+        
+        cell.likedByArray = self.likedByArray
        return cell
     
     }
@@ -53,6 +55,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.likeArray.removeAll(keepingCapacity: false)
                     self.urlArray.removeAll(keepingCapacity: false)
                     
+                    self.likedByArray.removeAll(keepingCapacity: false)
+                    
                     for document in snapshot!.documents {
                         let documentID = document.documentID
                         self.documentIDArray.append(documentID)
@@ -68,7 +72,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                                     
                                     if let comment = document.get("postComment") as? String {
                                         self.commentArray.append(comment)
-                                       
+                                        
+                                        
                                     }
                                 }
                             }
