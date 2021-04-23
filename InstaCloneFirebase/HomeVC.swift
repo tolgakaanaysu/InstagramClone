@@ -10,7 +10,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var likeArray = [Int]()
     var urlArray = [String]()
     var documentIDArray = [String]()
-    var likedByArray = [String]()
+    var likedByArray = [[String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +28,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.UserEmailLabel.text = emailArray[indexPath.row]
         cell.UserLikeLabel.text = String(likeArray[indexPath.row])
         cell.UserImageView.sd_setImage(with: URL(string: self.urlArray[indexPath.row]))
-        
-        cell.likedByArray = self.likedByArray
+        cell.likedByArray = self.likedByArray[indexPath.row]
        return cell
     
     }
@@ -54,13 +53,12 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.commentArray.removeAll(keepingCapacity: false)
                     self.likeArray.removeAll(keepingCapacity: false)
                     self.urlArray.removeAll(keepingCapacity: false)
-                    
                     self.likedByArray.removeAll(keepingCapacity: false)
                     
                     for document in snapshot!.documents {
                         let documentID = document.documentID
                         self.documentIDArray.append(documentID)
-                    
+                        
                         if let postedBy = document.get("postedBy") as? String {
                             self.emailArray.append(postedBy)
                             
@@ -72,6 +70,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                                     
                                     if let comment = document.get("postComment") as? String {
                                         self.commentArray.append(comment)
+                                        
+                                        if let likedBy = document.get("likedBy") as? [String]{
+                                            self.likedByArray.append(likedBy)
+                                        }
                                         
                                         
                                     }
