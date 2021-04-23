@@ -28,7 +28,14 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.UserEmailLabel.text = emailArray[indexPath.row]
         cell.UserLikeLabel.text = String(likeArray[indexPath.row])
         cell.UserImageView.sd_setImage(with: URL(string: self.urlArray[indexPath.row]))
-        cell.likedByArray = self.likedByArray[indexPath.row]
+
+        if likedByArray.isEmpty ==  true {
+            cell.likedByArray = self.likedByArray[Int()]
+        }
+        else {
+            cell.likedByArray = self.likedByArray[indexPath.row]
+        }
+       
        return cell
     
     }
