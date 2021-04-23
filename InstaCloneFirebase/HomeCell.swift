@@ -26,24 +26,25 @@ class HomeCell: UITableViewCell {
        
       
         let auth = Auth.auth().currentUser
-        
-        
+      
 //      Fotoğraf bir kere beğenilebilir
-        if likedByArray.count > 0 {
-                    
+        if likedByArray.count > 0  {
+           
             for likedby in likedByArray {
                     
                 if likedby == auth?.email {
+                    
                     isliked = true
                     break
                 }
             }
         }
-                
+        
         if isliked == false {
+            
             let firestoreDatabase = Firestore.firestore()
             likedByArray.append(auth!.email!)
-            
+     
             let setData = ["likedBy" : likedByArray]
             firestoreDatabase.collection("Posts").document(self.IDLabel.text!).setData(setData,merge:true)
                        

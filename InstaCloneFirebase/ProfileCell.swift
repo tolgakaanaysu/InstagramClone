@@ -19,13 +19,12 @@ class ProfileCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     @IBAction func deleteButtonClicked(_ sender: UIButton) {
@@ -36,8 +35,7 @@ class ProfileCell: UITableViewCell {
                 print(error!.localizedDescription)
             }
             else {
-                print("Delete Success")
-               
+                ViewController().makeAlert(titleInput: "DELETE",messageInput: "Are you sure?", buttonTitle: "DELETE")
             }
         }
 

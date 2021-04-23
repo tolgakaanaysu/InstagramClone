@@ -50,7 +50,6 @@ class ShareVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         
         let storage = Storage.storage()
         let storageReferance = storage.reference()
-        
         let mediaFolder = storageReferance.child("media")
         
         if let data = imageView.image?.jpegData(compressionQuality: 0.01){
@@ -72,8 +71,8 @@ class ShareVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                             //DATABASE
                             let fireStoreDatabase = Firestore.firestore()
                             var fireStoreReferance : DocumentReference?
-                            
-                            let fireStorePost = ["imageUrl": imageUrl!, "postedBy": Auth.auth().currentUser!.email!, "postComment": self.commentText.text!, "Date": FieldValue.serverTimestamp(), "like": 0  ] as [String : Any]
+                            let likeArray = [String]()
+                            let fireStorePost = ["imageUrl": imageUrl!, "postedBy": Auth.auth().currentUser!.email!, "postComment": self.commentText.text!, "Date": FieldValue.serverTimestamp(), "like": 0,"likedBy": likeArray  ] as [String : Any]
                             
                             fireStoreReferance = fireStoreDatabase.collection("Posts").addDocument(data: fireStorePost, completion: { (error) in
                             
