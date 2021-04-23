@@ -26,51 +26,30 @@ class HomeCell: UITableViewCell {
        
       
         let auth = Auth.auth().currentUser
-        let firestoreDatabase = Firestore.firestore()
         
         
-        // Kullanıcı kendi fotoğrafını beğenemez
-        // Kullanıcı diğer fotoğrafları bir kere beğenebilir
-                     
-         
-        print("Burası çalışıyor 88")
-        print(likedByArray)
-        print(likedByArray.count)
-        print("Burası çalışıyor 88")
-                
-           
+//      Fotoğraf bir kere beğenilebilir
         if likedByArray.count > 0 {
                     
-                   
             for likedby in likedByArray {
                     
                 if likedby == auth?.email {
                     isliked = true
                     break
-                
                 }
-                            
             }
-               
         }
-                
                 
         if isliked == false {
+            let firestoreDatabase = Firestore.firestore()
+            likedByArray.append(auth!.email!)
+            
+            let setData = ["likedBy" : likedByArray]
+            firestoreDatabase.collection("Posts").document(self.IDLabel.text!).setData(setData,merge:true)
                        
-                      
-                    likedByArray.append(auth!.email!)
-                    let setData = ["likedBy" : likedByArray]
-                    firestoreDatabase.collection("Posts").document(self.IDLabel.text!).setData(setData,merge:true)
-                        
-                 
-                    let likeStore = ["like": likedByArray.count ] as [String : Any]
-                    firestoreDatabase.collection("Posts").document(self.IDLabel.text!).setData(likeStore, merge: true)
-                        
-                    print("Buraya girdin 2")
-                    print(likedByArray)
-                    print("Buraya girdin 2")
+            let likeStore = ["like": likedByArray.count ] as [String : Any]
+            firestoreDatabase.collection("Posts").document(self.IDLabel.text!).setData(likeStore, merge: true)
                                  
         }
-        
     }
 }
