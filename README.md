@@ -1,1 +1,1 @@
-Firebase teknolojisini kullanarak basic instagram uygulaması yapmayı hedefledim
+firebase teknolojisini kullanarak basit instagram uygulaması yapmayı hedefledim
